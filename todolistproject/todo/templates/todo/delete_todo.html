@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Todo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        h1 {
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'todo_list' %}" class="back-link">← Back to Todo List</a>
+
+        <h1>Delete Todo</h1>
+
+        <p>Are you sure you want to delete this todo?</p>
+
+        <div class="todo-preview">
+            <div class="todo-title">{{ todo.title }}</div>
+            {% if todo.description %}
+                <div>{{ todo.description }}</div>
+            {% endif %}
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">Delete</button>
+            <a href="{% url 'todo_list' %}" class="btn-link">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
